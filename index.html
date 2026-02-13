@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín? 💘</title>
+    
+    <!-- ===== PROTECCIÓN CON CONTRASEÑA ===== -->
+    <script>
+        // CONFIGURACIÓN - CAMBIA ESTOS DATOS
+        const CONTRASENA = "gorda";      // ⚠️ PON LA CONTRASEÑA QUE QUIERAS
+        const NOMBRE_NOVIA = "Lorena";        // ⚠️ PON EL NOMBRE DE TU NOVIA
+        const MENSAJE = "❤️ Te amo mi gorda ❤️"; // Mensaje personalizado
+        
+        // Sistema de protección
+        window.onload = function() {
+            let intentos = 3;
+            
+            while(intentos > 0) {
+                let password = prompt(`🔒 PÁGINA PRIVADA PARA UNA PERSONA ESPECIAL\n\nHola, ingresa la contraseña para continuar:`);
+                
+                if(password === CONTRASENA) {
+                    alert(`✨ ¡Bienvenida ${NOMBRE_NOVIA}! ✨\n\n${MENSAJE}`);
+                    return; // Contraseña correcta - muestra la página
+                } else {
+                    intentos--;
+                    if(intentos > 0) {
+                        alert(`❌ Contraseña incorrecta. Te quedan ${intentos} intento(s).`);
+                    }
+                }
+            }
+            
+            // Si falla todos los intentos
+            alert("🚫 Acceso denegado. Esta página es privada.");
+            window.location.href = "https://www.google.com";
+        };
+    </script>
+    
+    <style>
+        /* ===== VARIABLES GLOBALES ===== */
+        :root {
+            --primary: #ff3366;
+            --primary-dark: #e31b4b;
+            --secondary: #ff6b8b;
+            --secondary-dark: #ff4d6d;
+            --accent: #ffb3c6;
+            --accent-dark: #ff8aa1;
+            --dark: #1a0f14;
+            --dark-card: #2a1a20;
+            --light: #fff5f7;
+            --gray: #ffd9e2;
+            --gray-dark: #ffb3c6;
+            
+            --font-heading: 'Montserrat', 'Arial', sans-serif;
+            --font-body: 'Open Sans', 'Arial', sans-serif;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            --radius: 30px;
+            --radius-lg: 50px;
+            
+            --shadow-sm: 0 2px 8px rgba(255, 51, 102, 0.2);
+            --shadow-md: 0 4px 16px rgba(255, 51, 102, 0.3);
+            --shadow-lg: 0 8px 32px rgba(255, 51, 102, 0.4);
+            
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            
+            --gradient-hero: linear-gradient(135deg, #ff3366, #ff6b8b, #ffb3c6);
+            --gradient-button: linear-gradient(135deg, #ff3366, #ff4d6d);
+        }
+
+        /* ===== RESET ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #ffe6ec, #ffd9e2, #ffccd9);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Corazones flotantes */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff3366" opacity="0.1"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') repeat;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+            animation: flotar 20s linear infinite;
+        }
+
+        @keyframes flotar {
+            from { transform: translateY(0) rotate(0deg); }
+            to { transform: translateY(-100px) rotate(10deg); }
+        }
+
+        /* ===== TIPOGRAFÍA ===== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+        h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h3 { font-size: clamp(1.5rem, 4vw, 2rem); }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ===== PANTALLA PRINCIPAL ===== */
+        #pantallaPrincipal.container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--primary);
+            max-width: 700px;
+            animation: aparecer 0.8s ease;
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #pantallaPrincipal h1 {
+            color: var(--primary);
+            text-shadow: 3px 3px 6px rgba(255, 51, 102, 0.3);
+            margin-bottom: var(--spacing-md);
+        }
+
+        #preguntaTexto {
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-lg);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* ===== BOTONES ===== */
+        .botones {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            align-items: center;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .btn-si, .btn-no {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.25rem 3rem;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            letter-spacing: 2px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-si::before, .btn-no::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
+        }
+
+        .btn-si:hover::before, .btn-no:hover::before {
+            left: 100%;
+        }
+
+        .btn-si {
+            background: var(--gradient-button);
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-si:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #a0a0a0, #808080);
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-no:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        #mensajeAbajo {
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            min-height: 50px;
+            font-style: italic;
+            font-weight: 600;
+            padding: var(--spacing-sm);
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius);
+            margin-top: var(--spacing-md);
+            border: 2px dashed var(--primary);
+        }
+
+        /* ===== PANTALLA DE SÍ ===== */
+        #pantallaSi.container {
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-lg);
+        }
+
+        .hero {
+            background: var(--gradient-hero);
+            padding: var(--spacing-xl) var(--spacing-md);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-xl);
+            color: white;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            border: 3px solid white;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-xs);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 2rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        /* ===== CONTENIDO VERTICAL ===== */
+        .contenido-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+        }
+
+        .apartado {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--primary);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .apartado::before {
+            content: '❤️';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 100px;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .apartado:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .apartado h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 4px solid var(--accent);
+            padding-bottom: var(--spacing-sm);
+            display: inline-block;
+        }
+
+        /* ===== FOTOS ===== */
+        .fotos-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .foto-item {
+            position: relative;
+            cursor: pointer;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 4px solid var(--primary);
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .foto-item:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .foto-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .foto-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .foto-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(255, 51, 102, 0.95));
+            color: white;
+            padding: var(--spacing-lg) var(--spacing-md);
+            font-size: 1.2rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+
+        .foto-item:hover .foto-caption {
+            transform: translateY(0);
+        }
+
+        /* ===== PELÍCULAS ===== */
+        .peliculas-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            margin: var(--spacing-md) 0;
+        }
+
+        .pelicula-card {
+            background: var(--light);
+            padding: var(--spacing-md);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pelicula-card:hover {
+            transform: translateX(15px);
+            border-color: var(--primary);
+            background: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .pelicula-card.seleccionada {
+            background: var(--gradient-hero);
+            border: 3px solid white;
+            color: white;
+        }
+
+        .pelicula-card.seleccionada .pelicula-titulo {
+            color: white;
+        }
+
+        .pelicula-poster-mini {
+            width: 80px;
+            height: 100px;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--radius);
+            border: 3px solid white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .pelicula-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .pelicula-titulo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            font-family: var(--font-heading);
+        }
+
+        .pelicula-ver-poster {
+            background: var(--primary);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pelicula-ver-poster:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: var(--accent-dark);
+        }
+
+        /* ===== RAMO PERFECTO ===== */
+        .ramo-container {
+            margin-top: var(--spacing-lg);
+        }
+
+        .ramo-titulo {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .ramo-categorias-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .ramo-categoria {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: var(--spacing-md);
+            border: 2px solid var(--accent);
+        }
+
+        .ramo-categoria h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .opciones-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .opcion-item {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+            box-shadow: var(--shadow-sm);
+            color: var(--dark);
+        }
+
+        .opcion-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(10px);
+            border-color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .opcion-item.seleccionada {
+            background: var(--gradient-button);
+            color: white;
+            border: 3px solid white;
+            font-weight: 800;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===== CITA PERFECTA ===== */
+        .cita-categorias-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .cita-categoria {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: var(--spacing-md);
+            border: 2px solid var(--accent);
+        }
+
+        .cita-categoria h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        /* ===== RESUMEN ===== */
+        .resumen {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: var(--gradient-hero);
+            border-radius: var(--radius);
+            font-size: 1.2rem;
+            color: white;
+            line-height: 1.8;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid white;
+            text-align: center;
+        }
+
+        /* ===== BOTÓN ENVIAR WHATSAPP ===== */
+        .btn-enviar {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 1.5rem;
+            margin-top: var(--spacing-xl);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 3px solid white;
+            width: 100%;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            letter-spacing: 2px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-enviar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-enviar:hover::before {
+            left: 100%;
+        }
+
+        .btn-enviar:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
+        }
+
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 30px;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 5px solid var(--primary);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 0 60px rgba(255, 51, 102, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius);
+        }
+
+        .footer p {
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-weight: 800;
+            font-family: var(--font-heading);
+        }
+
+        .footer-small {
+            font-size: 1.4rem !important;
+            color: var(--primary-dark) !important;
+            margin-top: var(--spacing-sm);
+            font-style: italic;
+        }
+
+        /* ===== MENSAJE CIERRE ===== */
+        #mensajeCierre {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--gradient-hero);
+            color: white;
+            padding: 60px;
+            border-radius: var(--radius-lg);
+            font-size: 2.5rem;
+            text-align: center;
+            z-index: 100;
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 5px solid white;
+            width: 90%;
+            max-width: 700px;
+            font-weight: 800;
+            box-shadow: var(--shadow-lg);
+            line-height: 1.5;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: translate(-50%, -30%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-sm);
+            }
+
+            #pantallaPrincipal.container {
+                padding: var(--spacing-lg) var(--spacing-md);
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+            }
+
+            .apartado h2 {
+                font-size: 2rem;
+            }
+
+            .pelicula-card {
+                flex-direction: column;
+                text-align: center;
+                padding: var(--spacing-md);
+            }
+
+            .pelicula-info {
+                text-align: center;
+            }
+
+            .foto-caption {
+                transform: translateY(0);
+                position: relative;
+                background: var(--primary);
+                font-size: 1rem;
+            }
+
+            .btn-enviar {
+                font-size: 1.2rem;
+                padding: 1.2rem 2rem;
+            }
+
+            #mensajeCierre {
+                font-size: 1.8rem;
+                padding: 30px;
+            }
+        }
+
+        .oculto {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal para ampliar imágenes -->
+    <div id="modal" class="modal" onclick="cerrarModal()">
+        <img id="modalImg" src="" alt="Ampliada">
+    </div>
+    
+    <!-- Pantalla Principal -->
+    <div class="container" id="pantallaPrincipal">
+        <h1>❤️ ¿QUIERES SER MI SAN VALENTÍN? ❤️</h1>
+        <div id="preguntaTexto">16.04.2025</div>
+        
+        <div class="botones">
+            <button class="btn-si" id="btnSi">❤️ ¡SÍ! ❤️</button>
+            <button class="btn-no" id="btnNo">💔 NO</button>
+        </div>
+        
+        <div id="mensajeAbajo"></div>
+    </div>
+    
+    <!-- Pantalla de SÍ -->
+    <div id="pantallaSi" class="container oculto">
+        <div class="hero">
+            <h1>❤️ 16 DE ABRIL 2025 ❤️</h1>
+            <p>el día que todo comenzó</p>
+        </div>
+        
+        <div class="contenido-vertical">
+            <!-- SECCIÓN UNIVERSO -->
+            <div class="apartado">
+                <h2>✧ NUESTRO UNIVERSO ✧</h2>
+                <div class="fotos-vertical">
+                    <!-- CAMBIA ESTAS RUTAS POR TUS IMÁGENES -->
+                    <div class="foto-item" onclick="abrirModal('imagenes/nebulosa.jpg')">
+                        <img src="imagenes/nebulosa.jpg" alt="Nebulosa">
+                        <div class="foto-caption">
+                            ✧ 16 Abril 2025 - La Nebulosa de nuestro amor ✧
+                        </div>
+                    </div>
+                    <div class="foto-item" onclick="abrirModal('imagenes/mapa-estelar.jpg')">
+                        <img src="imagenes/mapa-estelar.jpg" alt="Mapa Estelar">
+                        <div class="foto-caption">
+                            ✦ 16 Abril 2025 - Nuestro mapa estelar ✦
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN PELÍCULAS -->
+            <div class="apartado">
+                <h2>🎬 NOCHE DE PELÍCULA</h2>
+                <div class="peliculas-vertical" id="peliculasContainer">
+                    
+                    <!-- 1. HOW TO TRAIN YOUR DRAGON -->
+                    <div class="pelicula-card" onclick="seleccionarPelicula(this, 'How to Train Your Dragon')">
+                        <div class="pelicula-poster-mini" style="background-image: url('imagenes/how-to-train-your-dragon.jpg')"></div>
+                        <div class="pelicula-info">
+                            <div class="pelicula-titulo">HOW TO TRAIN YOUR DRAGON</div>
+                            <div style="font-size: 1rem; color: var(--primary);">Cómo entrenar a tu dragón</div>
+                        </div>
+                        <button class="pelicula-ver-poster" onclick="event.stopPropagation(); abrirModal('imagenes/how-to-train-your-dragon.jpg')">❤️</button>
+                    </div>
+                    
+                    <!-- 2. DESAFIO SIGLO XX -->
+                    <div class="pelicula-card" onclick="seleccionarPelicula(this, 'Desafio Siglo XX')">
+                        <div class="pelicula-poster-mini" style="background-image: url('imagenes/desafio-siglo-xx.jpg')"></div>
+                        <div class="pelicula-info">
+                            <div class="pelicula-titulo">DESAFIO SIGLO XX</div>
+                            <div style="font-size: 1rem; color: var(--primary);">Rocky IV</div>
+                        </div>
+                        <button class="pelicula-ver-poster" onclick="event.stopPropagation(); abrirModal('imagenes/desafio-siglo-xx.jpg')">❤️</button>
+                    </div>
+                    
+                    <!-- 3. VIKINGS -->
+                    <div class="pelicula-card" onclick="seleccionarPelicula(this, 'Vikings')">
+                        <div class="pelicula-poster-mini" style="background-image: url('imagenes/vikings.jpg')"></div>
+                        <div class="pelicula-info">
+                            <div class="pelicula-titulo">VIKINGS</div>
+                            <div style="font-size: 1rem; color: var(--primary);">Valhalla</div>
+                        </div>
+                        <button class="pelicula-ver-poster" onclick="event.stopPropagation(); abrirModal('imagenes/vikings.jpg')">❤️</button>
+                    </div>
+                    
+                    <!-- 4. GRAN TURISMO THE MOVIE -->
+                    <div class="pelicula-card" onclick="seleccionarPelicula(this, 'Gran Turismo The Movie')">
+                        <div class="pelicula-poster-mini" style="background-image: url('imagenes/gran-turismo.jpg')"></div>
+                        <div class="pelicula-info">
+                            <div class="pelicula-titulo">GRAN TURISMO</div>
+                            <div style="font-size: 1rem; color: var(--primary);">The Movie</div>
+                        </div>
+                        <button class="pelicula-ver-poster" onclick="event.stopPropagation(); abrirModal('imagenes/gran-turismo.jpg')">❤️</button>
+                    </div>
+                    
+                    <!-- 5. ELEMENTS -->
+                    <div class="pelicula-card" onclick="seleccionarPelicula(this, 'Elements')">
+                        <div class="pelicula-poster-mini" style="background-image: url('imagenes/elements.jpg')"></div>
+                        <div class="pelicula-info">
+                            <div class="pelicula-titulo">ELEMENTS</div>
+                            <div style="font-size: 1rem; color: var(--primary);">Elementos</div>
+                        </div>
+                        <button class="pelicula-ver-poster" onclick="event.stopPropagation(); abrirModal('imagenes/elements.jpg')">❤️</button>
+                    </div>
+                </div>
+                <div id="peliculaSeleccionada" class="seleccion-info" style="margin-top: var(--spacing-md); color: var(--primary); font-size: 1.3rem; font-weight: 800; text-align: center;"></div>
+            </div>
+            
+            <!-- SECCIÓN RAMO PERFECTO -->
+            <div class="apartado">
+                <h2>🌸 RAMO PERFECTO</h2>
+                <div class="ramo-container">
+                    <div class="ramo-titulo">❤️ CREA TU RAMO ❤️</div>
+                    
+                    <div class="ramo-categorias-vertical">
+                        <!-- FLORES -->
+                        <div class="ramo-categoria">
+                            <h3>🌹 FLORES</h3>
+                            <div class="opciones-vertical">
+                                <div class="opcion-item" onclick="seleccionarRamo('flor', 'Rosas Rojas - Pasión')">🌹 Rosas Rojas - Pasión</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('flor', 'Peonías - Romance')">🌸 Peonías - Romance</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('flor', 'Lirios - Elegancia')">⚜️ Lirios - Elegancia</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('flor', 'Girasoles - Alegría')">🌻 Girasoles - Alegría</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('flor', 'Tulipanes - Amor')">🌷 Tulipanes - Amor</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('flor', 'Orquídeas - Belleza')">🦋 Orquídeas - Belleza</div>
+                            </div>
+                        </div>
+                        
+                        <!-- ENVOLTORIO -->
+                        <div class="ramo-categoria">
+                            <h3>🎀 ENVOLTORIO</h3>
+                            <div class="opciones-vertical">
+                                <div class="opcion-item" onclick="seleccionarRamo('envoltorio', 'Kraft Natural')">📦 Kraft Natural</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('envoltorio', 'Blanco Mate')">⚪ Blanco Mate</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('envoltorio', 'Rosa Pastel')">💗 Rosa Pastel</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('envoltorio', 'Lila')">💜 Lila</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('envoltorio', 'Rojo Pasión')">❤️ Rojo Pasión</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('envoltorio', 'Dorado')">✨ Dorado</div>
+                            </div>
+                        </div>
+                        
+                        <!-- TAMAÑO -->
+                        <div class="ramo-categoria">
+                            <h3>📏 TAMAÑO</h3>
+                            <div class="opciones-vertical">
+                                <div class="opcion-item" onclick="seleccionarRamo('tamano', 'Pequeño - Íntimo')">💐 Pequeño - Íntimo</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('tamano', 'Mediano - Romántico')">💐💐 Mediano - Romántico</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('tamano', 'Grande - Espectacular')">💐💐💐 Grande - Espectacular</div>
+                            </div>
+                        </div>
+                        
+                        <!-- LAZO -->
+                        <div class="ramo-categoria">
+                            <h3>🎀 LAZO</h3>
+                            <div class="opciones-vertical">
+                                <div class="opcion-item" onclick="seleccionarRamo('lazo', 'Raso Blanco')">🤍 Raso Blanco</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('lazo', 'Yute Natural')">🪢 Yute Natural</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('lazo', 'Encaje Romántico')">🎀 Encaje</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('lazo', 'Lazo Rojo')">❤️ Lazo Rojo</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('lazo', 'Sin Lazo')">✨ Sin Lazo</div>
+                            </div>
+                        </div>
+                        
+                        <!-- EXTRA -->
+                        <div class="ramo-categoria">
+                            <h3>✨ EXTRA</h3>
+                            <div class="opciones-vertical">
+                                <div class="opcion-item" onclick="seleccionarRamo('extra', 'Tarjeta de Amor')">💌 Tarjeta de Amor</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('extra', 'Bombones')">🍫 Bombones</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('extra', 'Peluche')">🧸 Peluche</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('extra', 'Fotos Nuestras')">📸 Fotos Nuestras</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('extra', 'Ninguno')">🌸 Solo Flores</div>
+                            </div>
+                        </div>
+                        
+                        <!-- COLOR PREDOMINANTE -->
+                        <div class="ramo-categoria">
+                            <h3>🌈 COLOR</h3>
+                            <div class="opciones-vertical">
+                                <div class="opcion-item" onclick="seleccionarRamo('color', 'Rosado - Dulzura')">💗 Rosado - Dulzura</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('color', 'Rojo - Pasión')">❤️ Rojo - Pasión</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('color', 'Blanco - Pureza')">🤍 Blanco - Pureza</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('color', 'Amarillo - Alegría')">💛 Amarillo - Alegría</div>
+                                <div class="opcion-item" onclick="seleccionarRamo('color', 'Lila - Encanto')">💜 Lila - Encanto</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="resumenRamo" class="resumen">
+                        ❤️ Aún no has creado tu ramo ❤️
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN CITA PERFECTA -->
+            <div class="apartado">
+                <h2>💘 CITA PERFECTA</h2>
+                
+                <div class="cita-categorias-vertical">
+                    <!-- LUGAR -->
+                    <div class="cita-categoria">
+                        <h3>📍 LUGAR</h3>
+                        <div class="opciones-vertical">
+                            <div class="opcion-item" onclick="seleccionarCita('lugar', 'Lugar Tranquilo y Acogedor')">🌿 Tranquilo y Acogedor</div>
+                            <div class="opcion-item" onclick="seleccionarCita('lugar', 'Romántico con Vista')">💕 Romántico con Vista</div>
+                            <div class="opcion-item" onclick="seleccionarCita('lugar', 'Aventura al Aire Libre')">🌟 Aventura al Aire Libre</div>
+                            <div class="opcion-item" onclick="seleccionarCita('lugar', 'Noche de Ciudad')">🌃 Noche de Ciudad</div>
+                        </div>
+                    </div>
+                    
+                    <!-- COMIDA -->
+                    <div class="cita-categoria">
+                        <h3>🍽️ COMIDA</h3>
+                        <div class="opciones-vertical">
+                            <div class="opcion-item" onclick="seleccionarCita('comida', 'Sushi')">🍣 Sushi</div>
+                            <div class="opcion-item" onclick="seleccionarCita('comida', 'Italiana')">🍝 Italiana</div>
+                            <div class="opcion-item" onclick="seleccionarCita('comida', 'Mexicana')">🌮 Mexicana</div>
+                            <div class="opcion-item" onclick="seleccionarCita('comida', 'Japonesa')">🥢 Japonesa</div>
+                            <div class="opcion-item" onclick="seleccionarCita('comida', 'Helados')">🍦 Helados</div>
+                            <div class="opcion-item" onclick="seleccionarCita('comida', 'Tapas')">🍤 Tapas</div>
+                        </div>
+                    </div>
+                    
+                    <!-- BEBIDA -->
+                    <div class="cita-categoria">
+                        <h3>🥂 BEBIDA</h3>
+                        <div class="opciones-vertical">
+                            <div class="opcion-item" onclick="seleccionarCita('bebida', 'Café')">☕ Café</div>
+                            <div class="opcion-item" onclick="seleccionarCita('bebida', 'Té')">🍵 Té</div>
+                            <div class="opcion-item" onclick="seleccionarCita('bebida', 'Chocolate Caliente')">🍫 Chocolate Caliente</div>
+                            <div class="opcion-item" onclick="seleccionarCita('bebida', 'Vino')">🍷 Vino</div>
+                            <div class="opcion-item" onclick="seleccionarCita('bebida', 'Cóctel')">🍸 Cóctel</div>
+                        </div>
+                    </div>
+                    
+                    <!-- REGALO -->
+                    <div class="cita-categoria">
+                        <h3>🎁 REGALO</h3>
+                        <div class="opciones-vertical">
+                            <div class="opcion-item" onclick="seleccionarCita('regalo', 'Anillo')">💍 Anillo</div>
+                            <div class="opcion-item" onclick="seleccionarCita('regalo', 'Collar')">📿 Collar</div>
+                            <div class="opcion-item" onclick="seleccionarCita('regalo', 'Flores')">💐 Flores</div>
+                            <div class="opcion-item" onclick="seleccionarCita('regalo', 'Peluche')">🧸 Peluche</div>
+                            <div class="opcion-item" onclick="seleccionarCita('regalo', 'Carta de Amor')">💌 Carta de Amor</div>
+                            <div class="opcion-item" onclick="seleccionarCita('regalo', 'Fotos Nuestras')">📸 Fotos Nuestras</div>
+                        </div>
+                    </div>
+                    
+                    <!-- AMBIENTE -->
+                    <div class="cita-categoria">
+                        <h3>🎵 AMBIENTE</h3>
+                        <div class="opciones-vertical">
+                            <div class="opcion-item" onclick="seleccionarCita('ambiente', 'Música en Vivo')">🎹 Música en Vivo</div>
+                            <div class="opcion-item" onclick="seleccionarCita('ambiente', 'Cine al Aire Libre')">📽️ Cine al Aire Libre</div>
+                            <div class="opcion-item" onclick="seleccionarCita('ambiente', 'Juegos de Mesa')">🎮 Juegos de Mesa</div>
+                            <div class="opcion-item" onclick="seleccionarCita('ambiente', 'Ver el Atardecer')">🌅 Ver el Atardecer</div>
+                        </div>
+                    </div>
+                    
+                    <!-- FINAL -->
+                    <div class="cita-categoria">
+                        <h3>🌙 FINAL PERFECTO</h3>
+                        <div class="opciones-vertical">
+                            <div class="opcion-item" onclick="seleccionarCita('final', 'Caminar Juntos')">🚶 Caminar Juntos</div>
+                            <div class="opcion-item" onclick="seleccionarCita('final', 'Ver las Estrellas')">✨ Ver las Estrellas</div>
+                            <div class="opcion-item" onclick="seleccionarCita('final', 'Abrazos y Besos')">💏 Abrazos y Besos</div>
+                            <div class="opcion-item" onclick="seleccionarCita('final', 'Ver Fotos Viejas')">📷 Ver Fotos Viejas</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="resumenCita" class="resumen">
+                    💘 Elige los detalles de nuestra cita perfecta 💘
+                </div>
+                
+                <button class="btn-enviar" onclick="enviarTodo()">
+                    💌 ENVIAR PLAN POR WHATSAPP 💌
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>❤️ 16.04.2025 ❤️</p>
+            <p class="footer-small">para siempre</p>
+        </div>
+    </div>
+
+    <script>
+        // ===========================================
+        // CONFIGURACIÓN WHATSAPP
+        // ===========================================
+        const WHATSAPP_NUMBER = "+5358873126"; // ⚠️ PON TU NÚMERO DE WHATSAPP
+        
+        // ===========================================
+        // SISTEMA DE NO
+        // ===========================================
+        const pantallaPrincipal = document.getElementById('pantallaPrincipal');
+        const pantallaSi = document.getElementById('pantallaSi');
+        const btnSi = document.getElementById('btnSi');
+        const btnNo = document.getElementById('btnNo');
+        const preguntaTexto = document.getElementById('preguntaTexto');
+        const mensajeAbajo = document.getElementById('mensajeAbajo');
+
+        let contadorNo = 0;
+        let escalaSi = 1;
+        let escalaNo = 1;
+
+        btnSi.addEventListener('click', function() {
+            pantallaPrincipal.classList.add('oculto');
+            pantallaSi.classList.remove('oculto');
+            window.scrollTo(0, 0);
+        });
+
+        function manejarNo() {
+            contadorNo++;
+
+            if(contadorNo === 1) {
+                preguntaTexto.textContent = '❤️ ¿SEGURA? ❤️';
+                mensajeAbajo.textContent = 'piensa bien...';
+                escalaSi += 0.4;
+                escalaNo = 0.85;
+            } 
+            else if(contadorNo === 2) {
+                preguntaTexto.textContent = '💘 ¿ESTÁS SEGURA? 💘';
+                mensajeAbajo.textContent = '¿de verdad?';
+                escalaSi += 0.5;
+                escalaNo = 0.7;
+            } 
+            else if(contadorNo === 3) {
+                preguntaTexto.textContent = '❤️ ÚLTIMA OPORTUNIDAD ❤️';
+                mensajeAbajo.textContent = 'piénsalo bien...';
+                escalaSi += 0.6;
+                escalaNo = 0.55;
+            } 
+            else if(contadorNo === 4) {
+                preguntaTexto.textContent = '💔 ¿ME VAS A DECIR QUE NO? 💔';
+                mensajeAbajo.textContent = 'mira cómo crece el sí...';
+                escalaSi += 0.7;
+                escalaNo = 0.4;
+            } 
+            else if(contadorNo === 5) {
+                preguntaTexto.textContent = '❤️ ÚLTIMA LLAMADA ❤️';
+                mensajeAbajo.textContent = 'el sí te espera';
+                escalaSi += 0.8;
+                escalaNo = 0.25;
+            } 
+            else if(contadorNo === 6) {
+                pantallaPrincipal.remove();
+                const mensajeFinal = document.createElement('div');
+                mensajeFinal.id = 'mensajeCierre';
+                mensajeFinal.innerHTML = '❤️ SABÍA QUE DIRÍAS QUE SÍ ❤️<br><br>16.04.2025<br><br>❤️ TE AMO ❤️';
+                document.body.appendChild(mensajeFinal);
+                return;
+            }
+
+            btnSi.style.transform = `scale(${escalaSi})`;
+            btnNo.style.transform = `scale(${escalaNo})`;
+            btnNo.style.zIndex = '3';
+            btnSi.style.zIndex = '1';
+            btnSi.style.boxShadow = `0 0 ${30 + contadorNo * 10}px rgba(255, 51, 102, 0.6)`;
+        }
+
+        btnNo.addEventListener('click', manejarNo);
+
+        btnNo.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            if(contadorNo < 5) {
+                const x = Math.random() * 15 - 7.5;
+                const y = Math.random() * 15 - 7.5;
+                btnNo.style.transform = `scale(${escalaNo}) translate(${x}px, ${y}px)`;
+            }
+        });
+
+        btnNo.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            btnNo.style.transform = `scale(${escalaNo})`;
+            manejarNo();
+        });
+
+        // ===========================================
+        // FUNCIONES MODAL
+        // ===========================================
+        window.abrirModal = function(src) {
+            document.getElementById('modal').classList.add('active');
+            document.getElementById('modalImg').src = src;
+        };
+
+        window.cerrarModal = function() {
+            document.getElementById('modal').classList.remove('active');
+        };
+
+        document.addEventListener('keydown', e => { 
+            if(e.key === 'Escape') cerrarModal(); 
+        });
+
+        // ===========================================
+        // SELECCIÓN DE PELÍCULA
+        // ===========================================
+        window.seleccionarPelicula = function(elemento, nombre) {
+            document.querySelectorAll('.pelicula-card').forEach(op => op.classList.remove('seleccionada'));
+            elemento.classList.add('seleccionada');
+            document.getElementById('peliculaSeleccionada').innerHTML = `❤️ VEREMOS: ${nombre} ❤️`;
+        };
+
+        // ===========================================
+        // SELECCIÓN DE RAMO
+        // ===========================================
+        const ramoSeleccionado = {};
+
+        window.seleccionarRamo = function(categoria, valor) {
+            if (!event) return;
+            
+            const categoriaElement = event.target.parentElement;
+            categoriaElement.querySelectorAll('.opcion-item').forEach(op => op.classList.remove('seleccionada'));
+            event.target.classList.add('seleccionada');
+            ramoSeleccionado[categoria] = valor;
+            
+            const partes = [];
+            if(ramoSeleccionado.flor) partes.push(`🌹 ${ramoSeleccionado.flor}`);
+            if(ramoSeleccionado.envoltorio) partes.push(`🎀 ${ramoSeleccionado.envoltorio}`);
+            if(ramoSeleccionado.tamano) partes.push(`📏 ${ramoSeleccionado.tamano}`);
+            if(ramoSeleccionado.lazo) partes.push(`🎀 ${ramoSeleccionado.lazo}`);
+            if(ramoSeleccionado.extra) partes.push(`✨ ${ramoSeleccionado.extra}`);
+            if(ramoSeleccionado.color) partes.push(`🌈 ${ramoSeleccionado.color}`);
+            
+            if(partes.length > 0) {
+                document.getElementById('resumenRamo').innerHTML = '❤️ MI RAMO PERFECTO ❤️<br><br>' + partes.join('<br>');
+            }
+        };
+
+        // ===========================================
+        // SELECCIÓN DE CITA
+        // ===========================================
+        const citaSeleccionada = {};
+
+        window.seleccionarCita = function(categoria, valor) {
+            if (!event) return;
+            
+            const categoriaElement = event.target.parentElement;
+            categoriaElement.querySelectorAll('.opcion-item').forEach(op => op.classList.remove('seleccionada'));
+            event.target.classList.add('seleccionada');
+            citaSeleccionada[categoria] = valor;
+            
+            const partes = [];
+            if(citaSeleccionada.lugar) partes.push(`📍 ${citaSeleccionada.lugar}`);
+            if(citaSeleccionada.comida) partes.push(`🍽️ ${citaSeleccionada.comida}`);
+            if(citaSeleccionada.bebida) partes.push(`🥂 ${citaSeleccionada.bebida}`);
+            if(citaSeleccionada.regalo) partes.push(`🎁 ${citaSeleccionada.regalo}`);
+            if(citaSeleccionada.ambiente) partes.push(`🎵 ${citaSeleccionada.ambiente}`);
+            if(citaSeleccionada.final) partes.push(`🌙 ${citaSeleccionada.final}`);
+            
+            if(partes.length > 0) {
+                document.getElementById('resumenCita').innerHTML = '💘 NUESTRA CITA PERFECTA 💘<br><br>' + partes.join('<br>');
+            }
+        };
+
+        // ===========================================
+        // ENVIAR POR WHATSAPP
+        // ===========================================
+        window.enviarTodo = function() {
+            const pelicula = document.querySelector('.pelicula-card.seleccionada')?.querySelector('.pelicula-titulo').textContent || 'No seleccionada';
+            
+            let mensaje = '❤️ MI PLAN PERFECTO DE SAN VALENTÍN ❤️%0A';
+            mensaje += '══════════════════════════%0A%0A';
+            
+            mensaje += '🎬 PELÍCULA ELEGIDA:%0A';
+            mensaje += `   ❤️ ${pelicula}%0A%0A`;
+            
+            mensaje += '🌸 MI RAMO IDEAL:%0A';
+            if(ramoSeleccionado.flor) mensaje += `   🌹 ${ramoSeleccionado.flor}%0A`;
+            if(ramoSeleccionado.envoltorio) mensaje += `   🎀 ${ramoSeleccionado.envoltorio}%0A`;
+            if(ramoSeleccionado.tamano) mensaje += `   📏 ${ramoSeleccionado.tamano}%0A`;
+            if(ramoSeleccionado.lazo) mensaje += `   🎀 ${ramoSeleccionado.lazo}%0A`;
+            if(ramoSeleccionado.extra) mensaje += `   ✨ ${ramoSeleccionado.extra}%0A`;
+            if(ramoSeleccionado.color) mensaje += `   🌈 ${ramoSeleccionado.color}%0A`;
+            
+            mensaje += `%0A💘 NUESTRA CITA PERFECTA:%0A`;
+            if(citaSeleccionada.lugar) mensaje += `   📍 ${citaSeleccionada.lugar}%0A`;
+            if(citaSeleccionada.comida) mensaje += `   🍽️ ${citaSeleccionada.comida}%0A`;
+            if(citaSeleccionada.bebida) mensaje += `   🥂 ${citaSeleccionada.bebida}%0A`;
+            if(citaSeleccionada.regalo) mensaje += `   🎁 ${citaSeleccionada.regalo}%0A`;
+            if(citaSeleccionada.ambiente) mensaje += `   🎵 ${citaSeleccionada.ambiente}%0A`;
+            if(citaSeleccionada.final) mensaje += `   🌙 ${citaSeleccionada.final}%0A`;
+            
+            mensaje += `%0A══════════════════════════%0A`;
+            mensaje += `❤️ 16.04.2025 - SIEMPRE ❤️`;
+            
+            // Enlace de WhatsApp
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${mensaje}`, '_blank');
+            alert('❤️ ¡Listo! Se abrirá WhatsApp con tu plan ❤️');
+        };
+    </script>
+</body>
+</html>
