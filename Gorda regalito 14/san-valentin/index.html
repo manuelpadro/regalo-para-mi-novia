@@ -4,11 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Quieres ser mi San Valentín? 💘</title>
+    
+    <!-- ===== PROTECCIÓN CON CONTRASEÑA ===== -->
+    <script>
+        // CONFIGURACIÓN - CAMBIA ESTOS DATOS
+        const CONTRASENA = "gorda";      // ⚠️ PON LA CONTRASEÑA QUE QUIERAS
+        const NOMBRE_NOVIA = "Lorena";        // ⚠️ PON EL NOMBRE DE TU NOVIA
+        const MENSAJE = "❤️ Te amo mi gorda ❤️"; // Mensaje personalizado
+        
+        // Sistema de protección
+        window.onload = function() {
+            let intentos = 3;
+            
+            while(intentos > 0) {
+                let password = prompt(`🔒 PÁGINA PRIVADA PARA UNA PERSONA ESPECIAL\n\nHola, ingresa la contraseña para continuar:`);
+                
+                if(password === CONTRASENA) {
+                    alert(`✨ ¡Bienvenida ${NOMBRE_NOVIA}! ✨\n\n${MENSAJE}`);
+                    return; // Contraseña correcta - muestra la página
+                } else {
+                    intentos--;
+                    if(intentos > 0) {
+                        alert(`❌ Contraseña incorrecta. Te quedan ${intentos} intento(s).`);
+                    }
+                }
+            }
+            
+            // Si falla todos los intentos
+            alert("🚫 Acceso denegado. Esta página es privada.");
+            window.location.href = "https://www.google.com";
+        };
+    </script>
+    
     <style>
-        /* ==========================================================================
-           SAN VALENTÍN 2025 - ESTILOS PRINCIPALES
-           ========================================================================== */
-
         /* ===== VARIABLES GLOBALES ===== */
         :root {
             --primary: #ff3366;
@@ -728,7 +756,6 @@
         }
     </style>
 </head>
-
 <body>
     <!-- Modal para ampliar imágenes -->
     <div id="modal" class="modal" onclick="cerrarModal()">
@@ -776,7 +803,7 @@
                 </div>
             </div>
             
-            <!-- SECCIÓN PELÍCULAS - ACTUALIZADA -->
+            <!-- SECCIÓN PELÍCULAS -->
             <div class="apartado">
                 <h2>🎬 NOCHE DE PELÍCULA</h2>
                 <div class="peliculas-vertical" id="peliculasContainer">
@@ -1014,11 +1041,10 @@
     </div>
 
     <script>
-        
         // ===========================================
-        // CONFIGURACIÓN - CAMBIA TU NÚMERO AQUÍ
+        // CONFIGURACIÓN WHATSAPP
         // ===========================================
-        const WHATSAPP_NUMBER = "+5358873126"; // ⚠️ PON TU NÚMERO (ej: 573001234567)
+        const WHATSAPP_NUMBER = "+5358873126"; // ⚠️ PON TU NÚMERO DE WHATSAPP
         
         // ===========================================
         // SISTEMA DE NO
@@ -1215,7 +1241,7 @@
             mensaje += `❤️ 16.04.2025 - SIEMPRE ❤️`;
             
             // Enlace de WhatsApp
-            window.open(`https://wa.me/5358873126?text=${mensaje}`, '_blank');
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${mensaje}`, '_blank');
             alert('❤️ ¡Listo! Se abrirá WhatsApp con tu plan ❤️');
         };
     </script>
